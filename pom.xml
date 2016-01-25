@@ -24,8 +24,33 @@
 		<junit.version>4.10</junit.version>
 		<lombok.version>1.12.6</lombok.version>
 		<slf4j.version>1.6.2</slf4j.version>
+		<guava.version>14.0.1</guava.version>
+		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<commons-lang.version>2.4</commons-lang.version>
+		<commons-io.version>2.4</commons-io.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons-lang.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons-beanutils.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -59,5 +84,6 @@
 		</plugins>
 	</build>
 	<modules>
+		<module>mybatis-test</module>
 	</modules>
 </project>

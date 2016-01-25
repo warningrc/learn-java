@@ -127,3 +127,5 @@ release.properties
 
 
 **/.DS_Store
+.cache
+.cache-tests
