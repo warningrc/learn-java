@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.warningrc.test</groupId>
+		<artifactId>learn-java</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>antlr4-test</artifactId>
+	<packaging>jar</packaging>
+	<properties>
+		<antlr4.version>4.5.1-1</antlr4.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+			<version>${antlr4.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>4.5.1-1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+						<configuration>
+							<!-- Include this line if you place your .g4 files in the same root 
+								folder as your Java source files. -->
+							<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+							<outputDirectory>${basedir}/src/main/java</outputDirectory>
+							<visitor>true</visitor>
+							<listener>true</listener>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

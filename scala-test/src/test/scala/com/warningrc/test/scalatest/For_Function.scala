@@ -8,6 +8,18 @@ object For_Function {
       println(100 * i + j)
     }
 
+    println("*" * 20)
+
+    val listFiles = (new java.io.File("./")).listFiles()
+
+    val files = for(file <- listFiles if file.isFile ) yield file
+
+    for(file <- files) println(file)
+
+    files.foreach(println _)
+
+    println("*" * 20)
+
     def add(i: Int): Int = i + 100
     println(add(1))
     val add1 = (i: Int) => i + 200

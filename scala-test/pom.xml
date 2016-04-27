@@ -12,7 +12,14 @@
 	<packaging>jar</packaging>
 	<properties>
 		<scala.version>2.11.6</scala.version>
+		<spark.version>1.6.0</spark.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>cloudera</id>
+			<url>https://repository.cloudera.com/cloudera/cloudera-repos</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -24,6 +31,25 @@
 			<artifactId>scala-compiler</artifactId>
 			<version>${scala.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-actors</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scalap</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.apache.spark</groupId> <artifactId>spark-core_2.10</artifactId> 
+			<version>${spark.version}</version> </dependency> <dependency> <groupId>org.apache.spark</groupId> 
+			<artifactId>spark-sql_2.10</artifactId> <version>${spark.version}</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.specs</groupId>
 			<artifactId>specs</artifactId>
@@ -58,9 +84,6 @@
 				</executions>
 				<configuration>
 					<scalaVersion>${scala.version}</scalaVersion>
-					<args>
-						<arg>-target:jvm-1.5</arg>
-					</args>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -85,10 +108,20 @@
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.6</version>
 				<executions>
-					<!-- <execution> <id>add-source</id> <phase>generate-sources</phase> 
-						<goals> <goal>add-source</goal> </goals> <configuration> <sources> <source>src/main/java</source> 
-						<source>src/main/resources</source> <source>src/main/scala</source> </sources> 
-						</configuration> </execution> -->
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/java</source>
+								<source>src/main/resources</source>
+								<source>src/main/scala</source>
+							</sources>
+						</configuration>
+					</execution>
 					<execution>
 						<id>add-test-source</id>
 						<phase>generate-test-sources</phase>
@@ -100,6 +133,36 @@
 								<source>src/test/java</source>
 								<source>src/test/scala</source>
 								<source>src/test/resources</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/scala</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/test/scala</source>
 							</sources>
 						</configuration>
 					</execution>
